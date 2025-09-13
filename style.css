@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #330033, #660066);
+    background-size: 400% 400%;
+    animation: gradientMove 20s ease infinite;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+@keyframes gradientMove {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+.container {
+    background: rgba(20, 20, 30, 0.9);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 0 50px rgba(255, 0, 128, 0.6);
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ff4b9c;
+    text-shadow: 0 0 10px #ff4b9c, 0 0 20px #ff66b3;
+}
+
+#mensagem, #versiculo {
+    font-size: 1.2em;
+    margin: 20px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+    color: #ff66b3;
+    text-shadow: 0 0 5px #ff66b3;
+}
+
+#mensagem.show, #versiculo.show {
+    opacity: 1;
+    transform: translateY(0);
+    animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+    0% {text-shadow: 0 0 5px #ff66b3, 0 0 10px #ff66b3, 0 0 20px #ff66b3, 0 0 30px #ff3399;}
+    100% {text-shadow: 0 0 15px #ff99cc, 0 0 30px #ff99cc, 0 0 40px #ff66cc, 0 0 50px #ff33aa;}
+}
+
+.caixa {
+    font-size: 100px;
+    cursor: pointer;
+    transition: transform 0.6s ease, text-shadow 0.5s ease;
+    animation: balancar 2s infinite alternate, brilhar 1.5s infinite alternate;
+}
+
+@keyframes balancar {
+    0% {transform: rotate(-10deg);}
+    50% {transform: rotate(10deg);}
+    100% {transform: rotate(-10deg);}
+}
+
+@keyframes brilhar {
+    0% {text-shadow: 0 0 10px #ff66cc;}
+    50% {text-shadow: 0 0 25px #ff99cc;}
+    100% {text-shadow: 0 0 10px #ff66cc;}
+}
+
+img#foto {
+    margin-top: 20px;
+    width: 200px;
+    max-width: 90%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s ease;
+    cursor: pointer;
+}
+
+img#foto.show {
+    opacity: 1;
+    transform: scale(1);
+    animation: pulsar 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);}
+    100% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 0, 128, 0.8);}
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: #ff0066;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff3399, 0 0 40px #ff66cc;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #ff66cc, 0 0 60px #ff99e6;
+}
+
+#coracoes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.coracao {
+    position: absolute;
+    font-size: 20px;
+    color: #ff66cc;
+    animation: flutuar 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes flutuar {
+    0% {transform: translateY(100vh) scale(0.5) rotate(0deg);}
+    50% {opacity: 1; transform: translateY(50vh) scale(1) rotate(180deg);}
+    100% {transform: translateY(-10vh) scale(0.5) rotate(360deg);}
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 10px #ff66cc;
+}
+
+@media (max-width: 500px) {
+    .caixa { font-size: 70px; }
+    img#foto { width: 160px; }
+    h1 { font-size: 1.5em; }
+    #mensagem, #versiculo { font-size: 1em; }
+}
+
+.dedicatoria {
+    font-size: 1.2em;
+    color: #ff66cc;
+    text-shadow: 0 0 5px #ff66cc, 0 0 10px #ff3399, 0 0 20px #ff00aa;
+    margin-bottom: 15px;
+    animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
